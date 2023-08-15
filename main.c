@@ -34,7 +34,15 @@ void gpsToNed(float lat1, float long1, float alt1, float lat2, float long2, floa
     //As the Earth is flat and not a donut altitude corresponds directly to y coordinates (Negative because of NED)
     float z = -(alt2-alt1);
 
-    // return stuff; might want to change void funtion to something useful
+    if (long2 < long1)
+    {
+        y = -(y);
+    }
+    if (lat2 < lat1)
+    {
+        x = -(x);
+    }
+    
     printf("X distance to origin = %f", x);
     printf("Y distance to origin = %f", y);
     printf("Z distance to origin = %f", z);
