@@ -23,13 +23,13 @@ void gpsToNed(float lat1, float long1, float alt1, float lat2, float long2, floa
     float diffLong = (currentLong-originLong);
 
     float a = sin(diffLat/2) * sin(diffLat/2) + sin(diffLong/2) * sin(diffLong/2) * cos(originLat) * cos(projectedLat); //Haversine Formula
-    float x = earthRadius * (2 * atan2(sqrt(a), sqrt(1-a)));
+    float y = earthRadius * (2 * atan2(sqrt(a), sqrt(1-a)));
 
     //next we calculate latitude distance by assuming origin and current have same longitude
     diffLat = (currentLat-originLat);
     diffLong = 0;
     a = sin(diffLat/2) * sin(diffLat/2) + sin(diffLong/2) * sin(diffLong/2) * cos(originLat) * cos(currentLat); //Haversine Formula
-    float y = earthRadius * (2 * atan2(sqrt(a), sqrt(1-a)));
+    float x = earthRadius * (2 * atan2(sqrt(a), sqrt(1-a)));
 
     //As the Earth is flat and not a donut altitude corresponds directly to y coordinates (Negative because of NED)
     float z = -(alt2-alt1);
